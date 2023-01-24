@@ -15,11 +15,11 @@ abstract class AbstractGenerator implements Generator
         $this->boot();
 
         if (empty(trim($definition = $this->getDefinition()))) {
-            return "    export interface {$this->tsClassName()} {}" . PHP_EOL;
+            return "    {$this->tsClassName()} {}" . PHP_EOL;
         }
 
         return <<<TS
-            export interface {$this->tsClassName()} {
+            {$this->tsClassName()}: {
                 $definition
             }
 

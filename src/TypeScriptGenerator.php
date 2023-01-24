@@ -45,9 +45,7 @@ class TypeScriptGenerator
         return $reflections->map(fn (ReflectionClass $reflection) => $this->makeInterface($reflection))
             ->whereNotNull()
             ->whenNotEmpty(function (Collection $definitions) use ($namespace) {
-                $tsNamespace = str_replace('\\', '.', $namespace);
-
-                return $definitions->prepend("declare namespace {$tsNamespace} {")->push('}' . PHP_EOL);
+                return $definitions->prepend("export interface Models {")->push('}' . PHP_EOL);
             })
             ->join(PHP_EOL);
     }
